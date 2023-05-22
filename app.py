@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 import joblib
 import pandas as pd
 from IA import generar_respuesta
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Carga el modelo y el diccionario de mapeo
 rf = joblib.load('modelopruebaforest8.joblib')
@@ -29,8 +31,12 @@ def predict():
     # Realiza la predicción con el modelo
     prediction = rf.predict(input_df)
 
+    response = jsonify({'prediction': int(prediction[0])})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+
   
-    return jsonify({'prediction': int(prediction[0])})
+    return response
+
 
 
 
@@ -43,7 +49,7 @@ def predict_tips():
     # Mapea los valores categóricos a valores numéricos utilizando el diccionario de mapeo
     input_codes = {}
     for key, value in input_data.items():
-        input_codes[key] = [mapping_dict[key][value[0]]]
+        input_codes[key] = [mapping_dict[key][value]]
 
     # Crea un DataFrame con los datos de entrada codificados
     input_df = pd.DataFrame(input_codes)
@@ -54,8 +60,10 @@ def predict_tips():
     # LlamaDA A la funcion generar_respuesta que se encuentra en el archivo IA :)
     respuesta_openai = generar_respuesta(int(prediction[0]))
 
+    response = jsonify({'prediction': int(prediction[0]), 'respuesta_Api_GPT': respuesta_openai})
+    response.headers.add("Access-Control-Allow-Origin", "*")
     #  predicción y la respuesta de GPT :V 
-    return jsonify({'prediction': int(prediction[0]), 'respuesta_Api_GPT': respuesta_openai})
+    return response
     
    
 
