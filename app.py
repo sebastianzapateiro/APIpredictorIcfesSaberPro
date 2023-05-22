@@ -21,7 +21,7 @@ def predict():
     # Mapea los valores categóricos a valores numéricos utilizando el diccionario de mapeo
     input_codes = {}
     for key, value in input_data.items():
-        input_codes[key] = [mapping_dict[key][value[0]]]
+        input_codes[key] = [mapping_dict[key][value]]
 
     # Crea un DataFrame con los datos de entrada codificados
     input_df = pd.DataFrame(input_codes)
