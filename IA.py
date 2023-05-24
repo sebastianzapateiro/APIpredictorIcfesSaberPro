@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = 'PEGAR AQUI APIKEY'
+openai.api_key = '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'
 
 def generar_respuesta(prediccion,respuestas_estudiante):
     prompt=""
@@ -43,7 +43,7 @@ def generar_respuesta(prediccion,respuestas_estudiante):
             engine='text-davinci-003',
             prompt=prompt,
             max_tokens=350,
-            temperature=0.7,
+            temperature=0.8,
             n=1,
             stop=None,
             timeout=15

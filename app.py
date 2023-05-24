@@ -59,8 +59,9 @@ def predict_tips():
 
     # LlamaDA A la funcion generar_respuesta que se encuentra en el archivo IA :)
     respuesta_openai = generar_respuesta(int(prediction[0]),input_data)
+    #respuesta_openai = 'IA'
 
-    response = jsonify({'prediction': int(prediction[0]), 'respuesta_Api_GPT': 'Para asegurar un buen puntaje en las pruebas ICFES, te recomiendo que tomes en consideración los siguientes consejos: \n\n1. Establece un horario de estudio y síguelo. Dedica cierto tiempo cada día a estudiar para que logres una adecuada preparación.\n\n2. Entiende los temas. Si no comprendes algo, investiga y pregunta al profesor para que te pueda ayudar.\n\n3. Practica siempre. Haz simulaciones de exámenes, resuelve ejercicios y práctica tus habilidades. \n\n4. Utiliza materiales de estudio adecuados. Busca libros que te expliquen el contenido de la manera más clara y sencilla para que lo entiendas fácilmente. \n\n5. Descansa. Estudiar mucho no siempre significa que obtendrás mejores resultados. Asegúrate de descansar para que tu mente se mantenga clara.\n\n6. Estudia en grupo. Estudiar con amigos puede ser una forma mucho más eficaz de adquirir conocimientos ya que podrás trabajar juntos para comprender mejor el contenido.'})
+    response = jsonify({'prediction': int(prediction[0]), 'respuesta_Api_GPT': respuesta_openai})
     response.headers.add("Access-Control-Allow-Origin", "*")
     #  predicción y la respuesta de GPT :V 
     return response
