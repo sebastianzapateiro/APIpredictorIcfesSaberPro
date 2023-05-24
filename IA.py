@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = 'PEGAR AQUI APIKEY'
+openai.api_key = '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'
 
 def generar_respuesta(prediccion):
     prompt=""
